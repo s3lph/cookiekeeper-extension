@@ -1,0 +1,9 @@
+**/.idea
+**/*.iml
+**/__pycache__
+**/*~
+**/*.aux
+**/*.dvi
+**/*.synctex.gz
+**/*.log
+**/.texpadtmp

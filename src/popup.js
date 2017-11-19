@@ -6,24 +6,8 @@ function persist() {
         if (cookie === undefined) {
             return;
         }
-
-        chrome.storage.local.get("stored_cookies", res => {
-
-            let storedCookies = res["stored_cookies"];
-            if (storedCookies === undefined) {
-                storedCookies = {};
-            }
-            let domainCookies = storedCookies[cookie.domain];
-            if (domainCookies === undefined) {
-                domainCookies = {};
-            }
-            domainCookies[cookie.name] = cookie;
-            storedCookies[cookie.domain] = domainCookies;
-
-            chrome.storage.local.set({"stored_cookies": storedCookies}, ()=> {
-                update();
-            });
-
+        setStoredCookie(cookie, () => {
+            update();
         });
     });
 }
@@ -32,12 +16,7 @@ function persist() {
 function unpersist() {
     let domain = decodeURIComponent(this.attributes.getNamedItem('data-cm-domain').value);
     let name = decodeURIComponent(this.attributes.getNamedItem('data-cm-name').value);
-    chrome.storage.local.get("stored_cookies", res => {
-
-        let storedCookies = res["stored_cookies"];
-        if (storedCookies === undefined) {
-            storedCookies = {};
-        }
+    loadStoredCookies(storedCookies => {
         let domainCookies = storedCookies[domain];
         if (domainCookies === undefined) {
             domainCookies = {};
@@ -48,32 +27,27 @@ function unpersist() {
         chrome.storage.local.set({"stored_cookies": storedCookies}, ()=> {
             update();
         });
-
     });
 }
 
 function update() {
     chrome.tabs.query({active: true, currentWindow: true}, tabs => {
         if (tabs === undefined || tabs.length < 1) {
-            alert('tabs are weird');
             return;
         }
-        chrome.storage.local.get("stored_cookies", res => {
-
-            let storedCookies = res["stored_cookies"];
-            if (storedCookies === undefined) {
-                storedCookies = {};
-            }
+        loadStoredCookies(storedCookies => {
             chrome.cookies.getAll({url: tabs[0].url}, cookies => {
                 let rows = '';
                 for (let cookie of cookies) {
                     if (storedCookies[cookie.domain] === undefined ||
                         storedCookies[cookie.domain][cookie.name] === undefined) {
-                        rows += '<tr><td>' + cookie.domain + '</td><td>' + cookie.name + '</td><td>' + cookie.value +
+                        rows += '<tr><td>' + escapeHtml(cookie.domain) + '</td><td>' +
+                            escapeHtml(cookie.name) + '</td><td>' + escapeHtml(cookie.value) +
                             '</td><td><button class="cm_persist" data-cm-url="' + encodeURIComponent(tabs[0].url) +
                             '" data-cm-name="' + encodeURIComponent(cookie.name) + '">+</button></td></tr>';
                     } else {
-                        rows += '<tr><td>' + cookie.domain + '</td><td>' + cookie.name + '</td><td>' + cookie.value +
+                        rows += '<tr><td>' + escapeHtml(cookie.domain) + '</td><td>' +
+                            escapeHtml(cookie.name) + '</td><td>' + escapeHtml(cookie.value) +
                             '</td><td><button class="cm_unpersist" data-cm-domain="' + encodeURIComponent(cookie.domain) +
                             '" data-cm-name="' + encodeURIComponent(cookie.name) + '">-</button></td></tr>';
                     }

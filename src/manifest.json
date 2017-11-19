@@ -15,6 +15,7 @@
   "background": {
     "persistent": false,
     "scripts": [
+      "util.js",
       "eventpage.js"
     ]
   },
@@ -35,5 +36,6 @@
     "cookies",
     "storage",
     "tabs"
-  ]
+  ],
+  "incognito": "not_allowed"
 }

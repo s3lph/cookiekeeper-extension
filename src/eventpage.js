@@ -22,7 +22,6 @@ function cookieListenerCallback(changeInfo) {
             }
         } else if (changeInfo.removed === false) {
             domainCookies[changeInfo.cookie.name] = changeInfo.cookie;
-            storedCookies[changeInfo.cookie.domain] = domainCookies;
         } else {
             return;
         }

@@ -12,22 +12,12 @@ function persist() {
     });
 }
 
-
 function unpersist() {
     let domain = decodeURIComponent(this.attributes.getNamedItem('data-cm-domain').value);
     let name = decodeURIComponent(this.attributes.getNamedItem('data-cm-name').value);
-    loadStoredCookies(storedCookies => {
-        let domainCookies = storedCookies[domain];
-        if (domainCookies === undefined) {
-            domainCookies = {};
-        }
-        delete domainCookies[name];
-        storedCookies[domain] = domainCookies;
-
-        chrome.storage.local.set({"stored_cookies": storedCookies}, ()=> {
-            update();
-        });
-    });
+    if (typeof domain === 'string' && typeof name === 'string') {
+        removeStoredCookie(domain, name);
+    }
 }
 
 function update() {

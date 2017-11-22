@@ -74,13 +74,31 @@ function setStoredCookie(cookie, callback) {
         let domainCookies = storedCookies[cookie.domain];
         if (domainCookies === undefined) {
             domainCookies = {};
+            storedCookies[cookie.domain] = domainCookies;
         }
         domainCookies[cookie.name] = cookie;
-        storedCookies[cookie.domain] = domainCookies;
         chrome.storage.local.set({"stored_cookies": storedCookies}, ()=> {
            if (typeof callback === 'function') {
                callback();
            }
+        });
+    });
+}
+
+function removeStoredCookie(domain, name) {
+    loadStoredCookies(storedCookies => {
+        let domainCookies = storedCookies[domain];
+        if (domainCookies === undefined) {
+            domainCookies = {};
+            storedCookies[domain] = domainCookies;
+        }
+        delete domainCookies[name];
+        if (isEmpty(domainCookies)) {
+            delete storedCookies[domain];
+        }
+
+        chrome.storage.local.set({"stored_cookies": storedCookies}, ()=> {
+            update();
         });
     });
 }

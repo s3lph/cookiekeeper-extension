@@ -1,0 +1,46 @@
+{
+  "extName": {
+    "message": "CookieKeeper",
+    "description": "Name of the extension."
+  },
+  "extDescription": {
+    "message": "Allows the user to keep single cookies stored across sessions when cookies are set to be non-persistent across sessions.",
+    "description": "Description of the extension."
+  },
+  "persistentCookies": {
+    "message": "Persistent Cookies",
+    "description": "Table title on the options page."
+  },
+  "buttonRemove": {
+    "message": "Remove",
+    "description": "Title of the buttons on the options page that untracks a single cookie."
+  },
+  "buttonRemoveAll": {
+    "message": "Remove all",
+    "description": "Title of the button on the options page that untracks all cookies."
+  },
+  "options": {
+    "message": "Options",
+    "description": "Text of the options link."
+  },
+  "titleOnThisPage": {
+    "message": "On This Page",
+    "description": "Table title in the poup."
+  },
+  "tableHeaderDomain": {
+    "message": "Domain",
+    "description": "Table header for the cookie domain column."
+  },
+  "tableHeaderName": {
+    "message": "Name",
+    "description": "Table header for the cookie name column."
+  },
+  "tableHeaderValue": {
+    "message": "Value",
+    "description": "Table header for the cookie value column."
+  },
+  "tableHeaderAddRemove": {
+    "message": "Add/Remove",
+    "description": "Table header for the add/remove column."
+  }
+}

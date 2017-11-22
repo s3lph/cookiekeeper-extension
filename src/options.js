@@ -39,7 +39,9 @@ function update() {
                 <td>
                     <button class="cm_unpersist"
                             data-cm-domain="${encodeURIComponent(cookie.domain)}"
-                            data-cm-name="${encodeURIComponent(cookie.name)}">Remove</button>
+                            data-cm-name="${encodeURIComponent(cookie.name)}">
+                        ${chrome.i18n.getMessage('buttonRemove')}
+                    </button>
                 </td>
             </tr>`;
                     }
@@ -56,6 +58,17 @@ function update() {
     });
 }
 
+/**
+ * Substitutes hardcoded HTML text in the options page by its localized counterpart.
+ */
+function localize() {
+    //The page title.
+    document.title = chrome.i18n.getMessage('extName');
+    //Some UI elements.
+    document.getElementById('title_h1').innerText = chrome.i18n.getMessage('extName');
+    document.getElementById('persistent_h2').innerText = chrome.i18n.getMessage('persistentCookies');
+    document.getElementById('reset_button').innerText = chrome.i18n.getMessage('buttonRemoveAll');
+}
 
 //Add onclick event handler to the 'Remove all' button.
 document.getElementById('reset_button').onclick = () => {
@@ -63,4 +76,5 @@ document.getElementById('reset_button').onclick = () => {
 };
 
 //Initialize the UI.
+localize();
 update();

@@ -98,10 +98,28 @@ function update() {
     });
 }
 
+
+/**
+ * Substitutes hardcoded HTML text in the options page by its localized counterpart.
+ */
+function localize() {
+    //The page title.
+    document.title = chrome.i18n.getMessage('extName');
+    //Some UI elements.
+    document.getElementById('title_h1').innerText = chrome.i18n.getMessage('extName');
+    document.getElementById('options_link').innerText = chrome.i18n.getMessage('options');
+    document.getElementById('title_on_this_page').innerText = chrome.i18n.getMessage('titleOnThisPage');
+    document.getElementById('td_title_domain').innerText = chrome.i18n.getMessage('tableHeaderDomain');
+    document.getElementById('td_title_name').innerText = chrome.i18n.getMessage('tableHeaderName');
+    document.getElementById('td_title_value').innerText = chrome.i18n.getMessage('tableHeaderValue');
+    document.getElementById('td_title_addremove').innerText = chrome.i18n.getMessage('tableHeaderAddRemove');
+}
+
 //Add onclick event handler to the link to the options page.
 document.getElementById('options_link').onclick = () => {
     window.open(chrome.extension.getURL('/options.html'));
 };
 
 //Initialize the UI.
+localize();
 update();

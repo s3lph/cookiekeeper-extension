@@ -1,0 +1,46 @@
+{
+  "extName": {
+    "message": "CookieKeeper",
+    "description": "Name der Erweiterung."
+  },
+  "extDescription": {
+    "message": "Erlaubt dem Nutzer, einzelne Cookies \u00fcber Browsersitzungen hinweg zu erhalten, wenn Cookies automatisch zwischen Sitzungen gel\u00f6scht werden.",
+    "description": "Beschreibung der Erweiterung."
+  },
+  "persistentCookies": {
+    "message": "Persistente Cookies",
+    "description": "Tabellen\u00fcberschrift auf der Optionenseite."
+  },
+  "buttonRemove": {
+    "message": "Entfernen",
+    "description": "Titel der Kn\u00f6pfe, die einzelne Cookies entfernen."
+  },
+  "buttonRemoveAll": {
+    "message": "Alle entfernen",
+    "description": "Titel des Knopfs, der alle Cookies entfernt."
+  },
+  "options": {
+    "message": "Optionen",
+    "description": "Text der Verkn\u00fcpfung zur Optionenseite."
+  },
+  "titleOnThisPage": {
+    "message": "Auf dieser Seite",
+    "description": "Tabellen\u00fcberschrift im Popup."
+  },
+  "tableHeaderDomain": {
+    "message": "Domain",
+    "description": "Tabellen\u00fcberschrift f\u00fcr die Cookie-Domain-Spalte."
+  },
+  "tableHeaderName": {
+    "message": "Name",
+    "description": "Tabellen\u00fcberschrift f\u00fcr die Cookie-Namen-Spalte."
+  },
+  "tableHeaderValue": {
+    "message": "Wert",
+    "description": "Tabellen\u00fcberschrift f\u00fcr die Cookie-Wert-Spalte."
+  },
+  "tableHeaderAddRemove": {
+    "message": "Hinzuf\u00fcgen/Entfernen",
+    "description": "Tabellen\u00fcberschrift f\u00fcr die Hinzuf\u00fcgen/L\u00f6schen-Spalte."
+  }
+}

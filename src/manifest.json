@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "CookieKeeper",
-  "description": "Allows the user to keep single cookies stored across sessions when cookies are set to be non-persistent across sessions.",
+  "name": "__MSG_extName__",
+  "description": "__MSG_extDescription__",
   "version": "0.1",
   "author": "s3lph",
 
@@ -11,6 +11,7 @@
     "48": "res/icon48.png",
     "128": "res/icon128.png"
   },
+  "default_locale": "en",
 
   "background": {
     "persistent": false,
@@ -26,7 +27,7 @@
       "24": "res/icon24.png",
       "32": "res/icon32.png"
     },
-    "default_title": "CookieKeeper",
+    "default_title": "__MSG_extName__",
     "default_popup": "popup.html"
   },
   "options_page": "options.html",

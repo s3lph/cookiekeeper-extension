@@ -6,7 +6,7 @@ function persist() {
     let url = decodeURIComponent(this.attributes.getNamedItem('data-cm-url').value);
     let name = decodeURIComponent(this.attributes.getNamedItem('data-cm-name').value);
     //Validate types
-    if (typeof domain === 'string' && typeof name === 'string') {
+    if (typeof url === 'string' && typeof name === 'string') {
         //Get the cookie matching the URL and name from Chrome's API
         chrome.cookies.get({url: url, name: name}, cookie => {
             //If there is no such cookie, we're done

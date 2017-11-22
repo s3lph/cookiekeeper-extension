@@ -32,5 +32,4 @@ When starting the browser, all stored cookies are loaded and restored.
 
 ## TODO
 
-- Code documentation!!! (probably should do this while it's still fresh…)
 - Better UI/UX.

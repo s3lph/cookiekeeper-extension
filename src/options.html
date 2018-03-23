@@ -4,20 +4,42 @@
     <meta charset="UTF-8">
     <title>CookieKeeper</title>
     <style>
+        body {
+            background: #dddddd;
+        }
         tr.cookie > td {
+            max-width: 400px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-wrap: none;
+            text-overflow: ellipsis;
             border: 1px solid black;
-            padding: 20px;
+            padding: 10px;
+        }
+        #cookie_table > thead {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1 id="title_h1">CookieKeeper</h1>
-    <h2 id="persistent_h2">Persistent Cookies</h2>
-    <table>
-        <tbody id="cookie_table">
-        </tbody>
-    </table>
-    <button id="reset_button">Remove all</button>
+    <header>
+        <h1 id="title_h1">CookieKeeper</h1>
+    </header>
+    <main>
+        <h2 id="persistent_h2">Persistent Cookies</h2>
+        <table id="cookie_table">
+        </table>
+        <button id="reset_button">Remove all</button>
+    </main>
+    <footer>
+        <ul>
+            <li><span id="footer_copy">&copy; 2017 s3lph</span></li>
+            <li><span id="footer_license">MIT License</span></li>
+            <li>
+                <a href="https://github.com/s3lph/cookiekeeper-extension" id="footer_github">Code on GitHub</a>
+            </li>
+        </ul>
+    </footer>
     <script src="/util.js"></script>
     <script src="/options.js"></script>
 </body>

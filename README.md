@@ -29,7 +29,3 @@ When starting the browser, all stored cookies are loaded and restored.
 - `<all_urls>` and `cookies` are required to access the cookies for arbitrary domains.
 - `storage` is required to write saved cookies to local storage. The cookies are not synced between devices.
 - `tabs` is required to figure out which website is currently active, so the popup can show the correct cookies.
-
-## TODO
-
-- Better UI/UX.

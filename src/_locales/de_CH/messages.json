@@ -45,14 +45,14 @@
   },
   "footerCopyrightNotice": {
     "message": "\u00a9 2017 s3lph",
-    "description": "Urheberrechtsnotiz in der Fu\u00dfzeile."
+    "description": "Urheberrechtsnotiz in der Fusszeile."
   },
   "footerLicenseNotice": {
     "message": "MIT License",
-    "description": "Lizenznotiz in der Fu\u00dfzeile."
+    "description": "Lizenznotiz in der Fusszeile."
   },
   "footerGithubNotice": {
     "message": "Code auf GitHub",
-    "description": "Github-Link in der Fu\u00dfzeile."
+    "description": "Github-Link in der Fusszeile."
   }
 }

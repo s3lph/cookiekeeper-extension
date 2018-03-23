@@ -42,5 +42,17 @@
   "tableHeaderAddRemove": {
     "message": "Add/Remove",
     "description": "Table header for the add/remove column."
+  },
+  "footerCopyrightNotice": {
+    "message": "\u00a9 2017 s3lph",
+    "description": "Copyright notice shown in the options page footer."
+  },
+  "footerLicenseNotice": {
+    "message": "MIT License",
+    "description": "Licence notice shown in the options page footer."
+  },
+  "footerGithubNotice": {
+    "message": "Code on GitHub",
+    "description": "GitHub link shown in the options page footer."
   }
 }

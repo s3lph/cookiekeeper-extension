@@ -10,6 +10,7 @@ function persist() {
         //Get the cookie matching the URL and name from Chrome's API
         chrome.cookies.get({url: url, name: name}, cookie => {
             //If there is no such cookie, we're done
+            console.log(cookie);
             if (cookie === undefined) {
                 return;
             }
@@ -57,10 +58,10 @@ function update() {
                         //If it's not there, add a table entry with a button to make the cookie persistent.
                         rows += `
             <tr>
-                <td>${escapeHtml(cookie.domain)}</td>
-                <td>${escapeHtml(cookie.name)}</td>
-                <td>${escapeHtml(cookie.value)}</td>
-                <td>
+                <td class="cookie_domain">${escapeHtml(cookie.domain)}</td>
+                <td class="cookie_name">${escapeHtml(cookie.name)}</td>
+                <td class="cookie_value">${escapeHtml(cookie.value)}</td>
+                <td class="cookie_button">
                     <button class="cm_persist"
                             data-cm-url="${encodeURIComponent(tabs[0].url)}"
                             data-cm-name="${encodeURIComponent(cookie.name)}">&plus;</button>
@@ -70,10 +71,10 @@ function update() {
                         //If the cookie is stored, add a table entry with a button to make the cookie non-persistent.
                         rows += `
             <tr>
-                <td>${escapeHtml(cookie.domain)}</td>
-                <td>${escapeHtml(cookie.name)}</td>
-                <td>${escapeHtml(cookie.value)}</td>
-                <td>
+                <td class="cookie_domain">${escapeHtml(cookie.domain)}</td>
+                <td class="cookie_name">${escapeHtml(cookie.name)}</td>
+                <td class="cookie_value">${escapeHtml(cookie.value)}</td>
+                <td class="cookie_button">
                     <button class="cm_unpersist"
                             data-cm-domain="${encodeURIComponent(cookie.domain)}"
                             data-cm-name="${encodeURIComponent(cookie.name)}">&minus;</button>

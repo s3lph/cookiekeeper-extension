@@ -5,6 +5,7 @@
   "description": "__MSG_extDescription__",
   "version": "0.1",
   "author": "s3lph",
+  "homepage_url": "https://github.com/s3lph/cookiekeeper-extension",
 
   "icons": {
     "16": "res/icon16.png",

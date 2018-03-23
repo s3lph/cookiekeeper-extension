@@ -26,26 +26,38 @@ function update() {
             if (storedCookies.hasOwnProperty(domain)) {
                 //Generate title row with only the domain name
                 let domainCookies = storedCookies[domain];
-                rows += '<tr class="domain"><td><h3>' + escapeHtml(domain) + '</h3></td></tr>';
+                rows += `
+            <thead>
+                <tr class="domain">
+                    <td>${escapeHtml(domain)}</td>
+                </tr>
+                <tr>
+                    <td>${chrome.i18n.getMessage('tableHeaderName')}</td>
+                    <td>${chrome.i18n.getMessage('tableHeaderValue')}</td>
+                </tr>
+            </thead>
+            <tbody>`;
                 //Iterate all cookies of this domain
                 for (let name in domainCookies) {
                     if (domainCookies.hasOwnProperty(name)) {
                         let cookie = domainCookies[name];
                         //Add a table entry with a button to make the cookie non-persistent.
                         rows += `
-            <tr class="cookie">
-                <td>${escapeHtml(cookie.name)}</td>
-                <td>${escapeHtml(cookie.value)}</td>
-                <td>
-                    <button class="cm_unpersist"
-                            data-cm-domain="${encodeURIComponent(cookie.domain)}"
-                            data-cm-name="${encodeURIComponent(cookie.name)}">
-                        ${chrome.i18n.getMessage('buttonRemove')}
-                    </button>
-                </td>
-            </tr>`;
+                <tr class="cookie">
+                    <td>${escapeHtml(cookie.name)}</td>
+                    <td>${escapeHtml(cookie.value)}</td>
+                    <td>
+                        <button class="cm_unpersist"
+                                data-cm-domain="${encodeURIComponent(cookie.domain)}"
+                                data-cm-name="${encodeURIComponent(cookie.name)}">
+                            ${chrome.i18n.getMessage('buttonRemove')}
+                        </button>
+                    </td>
+                </tr>`;
                     }
                 }
+                rows += `
+            </tbody>`;
             }
         }
         //Add all table rows to the UI, replacing previous rows.
@@ -68,6 +80,9 @@ function localize() {
     document.getElementById('title_h1').innerText = chrome.i18n.getMessage('extName');
     document.getElementById('persistent_h2').innerText = chrome.i18n.getMessage('persistentCookies');
     document.getElementById('reset_button').innerText = chrome.i18n.getMessage('buttonRemoveAll');
+    document.getElementById('footer_copy').innerText = chrome.i18n.getMessage('footerCopyrightNotice');
+    document.getElementById('footer_license').innerText = chrome.i18n.getMessage('footerLicenseNotice');
+    document.getElementById('footer_github').innerText = chrome.i18n.getMessage('footerGithubNotice');
 }
 
 //Add onclick event handler to the 'Remove all' button.

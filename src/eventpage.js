@@ -25,13 +25,22 @@ function cookieListenerCallback(changeInfo) {
         //If this is a removal event, only remove the cookie from storage, if it's not overwritten directly afterwards
         //in the next event (Chrome fires two events for a cookie change: the first removes the current cookie, the
         //second sets the new cookie).
-        if (changeInfo.removed === true && (changeInfo.cause !== "overwrite" && changeInfo.cause !== "expired_overwrite")) {
+        //FIXME workaround: Never remove tracked cookies and readd removed cookies on expiration
+        if (false) { //changeInfo.removed === true && (changeInfo.cause !== "overwrite" && changeInfo.cause !== "expired_overwrite")) {
             //Delete the stored cookie
+            alert("Removed cookie " + changeInfo.cookie.domain + ":" + changeInfo.cookie.name + "\n" +
+                "Reason: " + changeInfo.cause + "\n" +
+                "Expiry: " + changeInfo.cookie.expirationDate.toString());
             delete domainCookies[changeInfo.cookie.name];
             if (isEmpty(domainCookies)) {
                 //If there are no cookies left for the domain, remove the domain object alltoghether.
                 delete storedCookies[changeInfo.cookie.domain];
             }
+        } else if (changeInfo.cause === "expired" || changeInfo.cause === "expired_overwrite") {
+            let newExpirationDate = Math.round((new Date()).getTime() / 1000) + 604800;
+            domainCookies[changeInfo.cookie.name] = changeInfo.cookie;
+            domainCookies[changeInfo.cookie.name].expirationDate = newExpirationDate;
+            chrome.cookies.set(domainCookies[changeInfo.cookie.name]);
         } else if (changeInfo.removed === false) {
             //If this is not a removal event, simply write the new cookie to the stored cookies object
             domainCookies[changeInfo.cookie.name] = changeInfo.cookie;
@@ -49,6 +58,7 @@ function cookieListenerCallback(changeInfo) {
 function restoreCookiesCallback() {
     //Load stored cookies from local storage.
     loadStoredCookies(storedCookies => {
+        let newExpirationDate = Math.round((new Date()).getTime() / 1000) + 604800;
         //Iterate over the stored domains.
         for (let domain in storedCookies) {
             if (storedCookies.hasOwnProperty(domain)) {
@@ -70,7 +80,7 @@ function restoreCookiesCallback() {
                                 path: cookie.path,
                                 httpOnly: cookie.httpOnly,
                                 sameSite: cookie.sameSite,
-                                expirationDate: cookie.expirationDate,
+                                expirationDate: newExpirationDate,
                                 storeId: cookie.storeId
                             },
                             createdCookie => {}
